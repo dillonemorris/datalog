@@ -1,24 +1,35 @@
-import { useQuery } from 'react-query'
-import { Categories } from './types'
-import { client } from './utils/api-client'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
+import { ErrorBoundary } from 'react-error-boundary'
+import { FullPageErrorFallback } from './components/lib'
+import { NotFoundScreen } from './screens/NotFoundScreen'
+import { CategoriesScreen } from './screens/CategoriesScreen'
+import { CategoryScreen } from './screens/CategoryScreen'
 
 const App = () => {
-  const { data: categories } = useQuery<Categories>({
-    queryKey: 'categories',
-    queryFn: () => client(`categories`).then((data) => data),
-  })
-
   return (
-    <div>
-      <header>
-        <h1>Datalog</h1>
-      </header>
-      <div>
-        {categories?.map((category) => (
-          <h3>{category}</h3>
-        ))}
-      </div>
-    </div>
+    <main style={{ width: '100%' }}>
+      <ErrorBoundary FallbackComponent={FullPageErrorFallback}>
+        <AppRoutes />
+      </ErrorBoundary>
+    </main>
+  )
+}
+
+const AppRoutes = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <CategoriesScreen />
+        </Route>
+        <Route path="/category/:category">
+          <CategoryScreen />
+        </Route>
+        <Route path="*">
+          <NotFoundScreen />
+        </Route>
+      </Switch>
+    </Router>
   )
 }
 
