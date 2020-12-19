@@ -7,7 +7,7 @@
     "removeComments": false,
     "stripInternal": true,
     "alwaysStrict": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitThis": true,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
