@@ -1,4 +1,4 @@
-import * as colors from '../styles/colors'
+import '../styles/vars.css'
 
 type FullPageErrorFallbackProps = {
   error: Error
@@ -11,7 +11,7 @@ const FullPageErrorFallback: React.FC<FullPageErrorFallbackProps> = ({
     <div
       role="alert"
       style={{
-        color: colors.danger,
+        color: 'var(--colors-danger)',
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
