@@ -1,5 +1,6 @@
 import { API_URL } from './constants'
 
+// TODO: Delete since using gql API
 const client = async (endpoint: string) => {
   const config = {
     method: 'GET',
