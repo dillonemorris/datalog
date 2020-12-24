@@ -19,9 +19,9 @@ export const EntriesGrid: React.FC<EntriesGridProps> = ({ entries }) => {
     <Grid>
       {entries?.map((entry, i) => (
         <EntryCard
-          title={entry.API}
-          description={entry.Description}
-          key={`${entry.API}${i}`}
+          title={entry.title}
+          description={entry.description}
+          key={`${entry.title}${i}`}
         />
       ))}
     </Grid>

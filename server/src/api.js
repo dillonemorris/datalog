@@ -1,5 +1,4 @@
 const { RESTDataSource } = require("apollo-datasource-rest");
-const { v4 } = require("uuid");
 
 class API extends RESTDataSource {
   constructor() {
@@ -14,10 +13,15 @@ class API extends RESTDataSource {
       : [];
   }
 
+  async getEntryByTitle(title) {
+    const entries = await this.getAllEntries();
+    return entries?.find((e) => e.title === title) || "";
+  }
+
   entryReducer(entry) {
     return {
-      cursor: v4(),
-      api: entry.API,
+      cursor: `${entry.API} - ${entry.Category}`,
+      title: entry.API,
       category: entry.Category,
       description: entry.Description,
       auth: entry.Auth,

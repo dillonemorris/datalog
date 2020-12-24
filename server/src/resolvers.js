@@ -5,11 +5,21 @@ module.exports = {
     entries: async (_, { pageSize = 20, after }, { dataSources }) => {
       const allEntries = await dataSources.api.getAllEntries();
       // TODO: Accept filters arg from client
-      const filteredEntries = allEntries.filter((e) => e.https);
+      // const filters = [
+      //   { filter: "https", condition: true },
+      //   { filter: "cors", condition: "yes" },
+      // ];
+
+      // const filteredEntries = allEntries.filter((e) => {
+      //   return filters.every(
+      //     ({ filter, condition }) => e[filter] === condition
+      //   );
+      // });
+
       const entries = paginateResults({
         after,
         pageSize,
-        results: filteredEntries,
+        results: allEntries,
       });
 
       return {
@@ -22,6 +32,10 @@ module.exports = {
             allEntries[allEntries.length - 1].cursor
           : false,
       };
+    },
+    entry: async (_, { title }, { dataSources }) => {
+      const entry = await dataSources.api.getEntryByTitle(title);
+      return entry;
     },
   },
 };

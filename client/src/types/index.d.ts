@@ -3,13 +3,13 @@ import { THEMES } from '../utils/constants'
 export type Categories = string[]
 
 export type Entry = {
-  API: string
-  Category: string
-  Description: string
-  Auth: string
-  HTTPS: boolean
-  Cors: string
-  Link: string
+  title: string
+  category: string
+  description: string
+  auth: string
+  https: boolean
+  cors: string
+  link: string
 }
 
 export type Entries = {

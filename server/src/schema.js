@@ -2,7 +2,7 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type Entry {
-    api: String
+    title: String
     category: String
     description: String
     auth: String
@@ -13,10 +13,11 @@ const typeDefs = gql`
 
   type Query {
     entries(pageSize: Int, after: String): EntryConnection!
+    entry(title: String): Entry!
   }
 
   type EntryConnection {
-    cursor: String!
+    cursor: String
     hasMore: Boolean!
     entries: [Entry]!
   }
