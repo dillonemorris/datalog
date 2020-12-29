@@ -7,8 +7,8 @@ type NavItemProps = {
   title: string
 }
 
-const StyledListItem = styled.li`
-  padding-bottom: 12px;
+export const StyledListItem = styled.li`
+  padding-bottom: 24px;
   color: var(--colors-body-text);
 `
 

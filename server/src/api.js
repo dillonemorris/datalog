@@ -40,9 +40,9 @@ class API extends RESTDataSource {
       title: entry.API,
       category: entry.Category,
       description: entry.Description,
-      auth: entry.Auth,
       https: entry.HTTPS,
-      cors: entry.Cors,
+      authRequired: entry.Auth !== "",
+      supportsCors: entry.Cors === "yes",
       link: entry.Link,
     };
   }

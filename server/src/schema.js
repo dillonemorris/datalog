@@ -5,9 +5,9 @@ const typeDefs = gql`
     title: String
     category: String
     description: String
-    auth: String
+    authRequired: Boolean
     https: Boolean
-    cors: String
+    supportsCors: Boolean
     link: String
   }
 

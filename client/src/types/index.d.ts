@@ -8,9 +8,9 @@ export type Entry = {
   title: string
   category: string
   description: string
-  auth: string
+  authRequired: boolean
   https: boolean
-  cors: string
+  supportsCors: boolean
   link: string
 }
 

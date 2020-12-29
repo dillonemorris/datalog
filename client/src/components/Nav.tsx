@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client'
 import styled from 'styled-components'
 import '../styles/vars.css'
 import { Categories } from '../types'
-import { NavItem } from './NavItem'
+import { CategoriesList } from './CategoriesList'
 
 const CategoriesHeading = styled.h3`
   font-size: 14px;
@@ -34,15 +34,14 @@ export const Nav = () => {
   return (
     <NavContainer>
       <CategoriesHeading>Categories</CategoriesHeading>
-      <ul>
-        {(() => {
-          if (loading) return null
+      {(() => {
+        // TODO: skeleton
+        if (loading) return null
 
-          return data?.categories?.map(({ title }, i) => {
-            return <NavItem key={`${title}${i}`} title={title} />
-          })
-        })()}
-      </ul>
+        if (data?.categories) {
+          return <CategoriesList categories={data.categories} />
+        }
+      })()}
     </NavContainer>
   )
 }
