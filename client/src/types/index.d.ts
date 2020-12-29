@@ -1,24 +1,20 @@
 import { THEMES } from '../utils/constants'
 
-export type Categories = string[]
+type Category = { title: string }
+
+export type Categories = Category[]
 
 export type Entry = {
-  API: string
-  Category: string
-  Description: string
-  Auth: string
-  HTTPS: boolean
-  Cors: string
-  Link: string
+  title: string
+  category: string
+  description: string
+  auth: string
+  https: boolean
+  cors: string
+  link: string
 }
 
 export type Entries = {
-  count: number
-  entries: Entry[]
-}
-
-export type Category = {
-  count: number
   entries: Entry[]
 }
 
