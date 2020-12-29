@@ -11,15 +11,14 @@ const typeDefs = gql`
     link: String
   }
 
-  type Query {
-    entries(pageSize: Int, after: String): EntryConnection!
-    entry(title: String): Entry!
+  type Category {
+    title: String
   }
 
-  type EntryConnection {
-    cursor: String
-    hasMore: Boolean!
+  type Query {
     entries: [Entry]!
+    categories: [Category]!
+    entriesByCategory(category: String): [Entry]!
   }
 `;
 

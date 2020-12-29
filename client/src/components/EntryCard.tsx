@@ -7,22 +7,22 @@ type EntryCardProps = {
   description: string
 }
 
-const Card = styled.div`
-  padding: 12px;
+const Card = styled.li`
+  padding: 20px;
   border: 1px solid var(--colors-gray-200);
   border-radius: 8px;
 `
 
 const Description = styled.p`
   color: var(--colors-secondary-text);
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.4;
 `
 
 const Heading = styled.h3`
-  font-size: 16px;
+  font-size: 20px;
   color: var(--colors-body-text);
-  padding-bottom: 4px;
+  padding-bottom: 8px;
 `
 
 export const EntryCard: React.FC<EntryCardProps> = ({ title, description }) => {

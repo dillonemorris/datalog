@@ -13,14 +13,30 @@ class API extends RESTDataSource {
       : [];
   }
 
-  async getEntryByTitle(title) {
-    const entries = await this.getAllEntries();
-    return entries?.find((e) => e.title === title) || "";
+  async getCategories() {
+    const categories = await this.get("categories");
+    return Array.isArray(categories)
+      ? categories?.map((category) => this.categoryReducer(category))
+      : [];
+  }
+
+  async getEntriesByCategory(category) {
+    const categoryTrimmed = category.split(" ")[0];
+
+    const { entries } = await this.get(`entries?category=${categoryTrimmed}`);
+    return Array.isArray(entries)
+      ? entries?.map((entry) => this.entryReducer(entry))
+      : [];
+  }
+
+  categoryReducer(category) {
+    return {
+      title: category,
+    };
   }
 
   entryReducer(entry) {
     return {
-      cursor: `${entry.API} - ${entry.Category}`,
       title: entry.API,
       category: entry.Category,
       description: entry.Description,

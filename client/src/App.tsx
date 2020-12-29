@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ErrorBoundary } from 'react-error-boundary'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { FullPageErrorFallback } from './components/FullPageErrorFallback'
 import './styles/vars.css'
 import { Pages } from './pages'
@@ -14,12 +15,14 @@ const Main = styled.main`
 
 const App = () => {
   return (
-    <ErrorBoundary FallbackComponent={FullPageErrorFallback}>
-      <Header />
-      <Main>
-        <Pages />
-      </Main>
-    </ErrorBoundary>
+    <Router>
+      <ErrorBoundary FallbackComponent={FullPageErrorFallback}>
+        <Header />
+        <Main>
+          <Pages />
+        </Main>
+      </ErrorBoundary>
+    </Router>
   )
 }
 

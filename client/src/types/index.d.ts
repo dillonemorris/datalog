@@ -1,6 +1,8 @@
 import { THEMES } from '../utils/constants'
 
-export type Categories = string[]
+type Category = { title: string }
+
+export type Categories = Category[]
 
 export type Entry = {
   title: string
@@ -13,12 +15,6 @@ export type Entry = {
 }
 
 export type Entries = {
-  count: number
-  entries: Entry[]
-}
-
-export type Category = {
-  count: number
   entries: Entry[]
 }
 
