@@ -27,12 +27,6 @@ const Heading = styled.h3`
   padding-bottom: 4px;
 `
 
-const Description = styled.p`
-  color: var(--colors-secondary-text);
-  font-size: 14px;
-  line-height: 1.5;
-`
-
 export const Header = () => {
   return (
     <HeaderContainer>
@@ -41,7 +35,6 @@ export const Header = () => {
           <Heading>
             <Link to={'/'}>Datalog</Link>
           </Heading>
-          <Description>A catalog of Public API's.</Description>
         </div>
         <ThemeToggler />
       </StyledHeader>

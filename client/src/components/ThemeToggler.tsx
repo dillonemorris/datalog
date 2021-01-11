@@ -1,7 +1,6 @@
 import React from 'react'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import { useMedia } from '../hooks/useMedia'
-import { useToggle } from '../hooks/useToggle'
 import { Theme } from '../types'
 import { THEMES } from '../utils/constants'
 import { Moon } from './icons/Moon'

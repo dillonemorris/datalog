@@ -1,13 +1,42 @@
 import React from 'react'
 import { gql, useQuery } from '@apollo/client'
 import '../styles/vars.css'
-import { EntriesGrid } from '../components/EntriesGrid'
 import { Entry } from '../types'
 import { Spinner } from '../components/Spinner'
 import styled from 'styled-components'
+import { EntriesGrid } from '../components/EntriesGrid'
+import { EntryCard } from '../components/EntryCard'
+
+export const SpinnerContainer = styled.div`
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+`
+
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+
+export const EntriesHeader = styled.div`
+  padding-bottom: 20px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--colors-gray-200);
+`
+
+export const Heading = styled.h1`
+  color: var(--colors-body-text);
+  padding-bottom: 4px;
+`
+
+export const Description = styled.p`
+  color: var(--colors-secondary-text);
+  font-size: 18px;
+`
 
 export const ENTRY_CARD_DATA = gql`
-  fragment EntryCard on Entry {
+  fragment EntryCardData on Entry {
     title
     description
     authRequired
@@ -21,16 +50,10 @@ export const ENTRY_CARD_DATA = gql`
 const GET_ENTRIES = gql`
   query GetEntriesList {
     entries {
-      ...EntryCard
+      ...EntryCardData
     }
   }
   ${ENTRY_CARD_DATA}
-`
-
-export const SpinnerContainer = styled.div`
-  padding: 12px;
-  display: flex;
-  justify-content: center;
 `
 
 const Entries = () => {
@@ -38,21 +61,27 @@ const Entries = () => {
     entries: Entry[]
   }>(GET_ENTRIES)
 
-  // TODO: replace with skeleton component
-  if (loading) {
-    return (
-      <SpinnerContainer>
-        <Spinner />
-      </SpinnerContainer>
-    )
-  }
+  const entries = data?.entries
 
-  // TODO: replace with styled empty state illustration
-  if (!data?.entries) {
-    return <h1>No data</h1>
-  }
-
-  return <EntriesGrid entries={data.entries} />
+  return (
+    <FlexContainer>
+      <EntriesHeader>
+        <Heading>All API's</Heading>
+        <Description>A collection of free API's</Description>
+      </EntriesHeader>
+      <EntriesGrid>
+        {loading ? (
+          <SpinnerContainer>
+            <Spinner />
+          </SpinnerContainer>
+        ) : (
+          entries?.map((entry, i) => (
+            <EntryCard entry={entry} key={`${entry.title}${i}`} />
+          ))
+        )}
+      </EntriesGrid>
+    </FlexContainer>
+  )
 }
 
 export default Entries

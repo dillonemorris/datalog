@@ -8,15 +8,16 @@ class API extends RESTDataSource {
 
   async getAllEntries() {
     const { entries } = await this.get("entries");
+    console.log(entries);
     return Array.isArray(entries)
-      ? entries?.map((entry) => this.entryReducer(entry))
+      ? entries.map((entry) => this.entryReducer(entry))
       : [];
   }
 
   async getCategories() {
     const categories = await this.get("categories");
     return Array.isArray(categories)
-      ? categories?.map((category) => this.categoryReducer(category))
+      ? categories.map((category) => this.categoryReducer(category))
       : [];
   }
 
@@ -24,9 +25,20 @@ class API extends RESTDataSource {
     const categoryTrimmed = category.split(" ")[0];
 
     const { entries } = await this.get(`entries?category=${categoryTrimmed}`);
-    return Array.isArray(entries)
-      ? entries?.map((entry) => this.entryReducer(entry))
-      : [];
+
+    if (Array.isArray(entries)) {
+      return entries
+        .map((entry) => {
+          return this.entryReducer(entry);
+        })
+        .filter((e) => {
+          return (
+            categoryTrimmed !== "Currency" || e.category === "Currency Exchange"
+          );
+        });
+    } else {
+      return [];
+    }
   }
 
   categoryReducer(category) {

@@ -6,16 +6,16 @@ import { Categories } from '../types'
 import { CategoriesList } from './CategoriesList'
 
 const CategoriesHeading = styled.h3`
-  font-size: 14px;
-  letter-spacing: 0.2rem;
-  font-weight: normal;
-  color: var(--colors-gray-500);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--colors-body-text);
   text-transform: uppercase;
   padding-bottom: 24px;
 `
 
 const NavContainer = styled.div`
-  margin-right: 80px;
+  margin-right: 30px;
+  width: 400px;
 `
 
 const GET_CATEGORIES = gql`

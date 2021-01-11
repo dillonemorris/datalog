@@ -1,10 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { EntryCard } from '../components/EntryCard'
-import { Entry } from '../types'
 
 type EntriesGridProps = {
-  entries: Entry[]
+  children: JSX.Element[] | JSX.Element | undefined
 }
 
 const Grid = styled.ul`
@@ -15,16 +13,6 @@ const Grid = styled.ul`
   width: 100%;
 `
 
-export const EntriesGrid: React.FC<EntriesGridProps> = ({ entries }) => {
-  return (
-    <Grid>
-      {entries.map((entry, i) => (
-        <EntryCard
-          title={entry.title}
-          description={entry.description}
-          key={`${entry.title}${i}`}
-        />
-      ))}
-    </Grid>
-  )
+export const EntriesGrid: React.FC<EntriesGridProps> = ({ children }) => {
+  return <Grid>{children}</Grid>
 }

@@ -9,13 +9,20 @@ type NavItemProps = {
 
 export const StyledListItem = styled.li`
   padding-bottom: 24px;
-  color: var(--colors-body-text);
+  color: var(--colors-secondary-text);
+  list-style: none;
+  font-size: 18px;
 `
 
 export const NavItem: React.FC<NavItemProps> = ({ title }) => {
   return (
     <StyledListItem>
-      <NavLink to={`/category/${title}`}>{title}</NavLink>
+      <NavLink
+        activeStyle={{ color: 'var(--colors-body-text)' }}
+        to={`/category/${title}`}
+      >
+        {title}
+      </NavLink>
     </StyledListItem>
   )
 }

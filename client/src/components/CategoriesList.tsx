@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavItem } from './NavItem'
 import { StyledListItem } from './NavItem'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Categories } from '../types'
 
 type CategoriesListProps = {
@@ -14,7 +14,13 @@ export const CategoriesList: React.FC<CategoriesListProps> = ({
   return (
     <ul>
       <StyledListItem>
-        <Link to={'/'}>All</Link>
+        <NavLink
+          exact
+          activeStyle={{ color: 'var(--colors-body-text)' }}
+          to={'/all'}
+        >
+          All
+        </NavLink>
       </StyledListItem>
       {categories.map(({ title }, i) => {
         return <NavItem key={`${title}${i}`} title={title} />
