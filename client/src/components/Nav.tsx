@@ -16,6 +16,10 @@ const CategoriesHeading = styled.h3`
 const NavContainer = styled.div`
   margin-right: 30px;
   width: 400px;
+  overflow-y: auto;
+  height: calc(100vh - 4.5rem);
+  position: sticky;
+  top: 8.5rem;
 `
 
 const GET_CATEGORIES = gql`

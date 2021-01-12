@@ -17,11 +17,14 @@ export const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: static;
+  overflow: visible;
+  max-height: 100%;
 `
 
 export const EntriesHeader = styled.div`
   padding-bottom: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   border-bottom: 1px solid var(--colors-gray-200);
 `
 
