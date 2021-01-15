@@ -1,7 +1,11 @@
-const { ApolloServer } = require("apollo-server");
+const express = require("express");
+const { ApolloServer } = require("apollo-server-express");
 const typeDefs = require("./schema");
 const API = require("./api");
 const resolvers = require("./resolvers");
+
+const port = process.env.PORT || 4000;
+const app = express();
 
 const server = new ApolloServer({
   typeDefs,
@@ -11,10 +15,10 @@ const server = new ApolloServer({
   }),
 });
 
-server.listen().then(() => {
-  console.log(`
-      Server is running!
-      Listening on port 4000
-      Explore at https://studio.apollographql.com/dev
-    `);
+server.applyMiddleware({ app, path: "/api" });
+
+app.listen({ port }, () => {
+  console.log(
+    `GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
+  );
 });
