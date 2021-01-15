@@ -8,7 +8,6 @@ class API extends RESTDataSource {
 
   async getAllEntries() {
     const { entries } = await this.get("entries");
-    console.log(entries);
     return Array.isArray(entries)
       ? entries.map((entry) => this.entryReducer(entry))
       : [];

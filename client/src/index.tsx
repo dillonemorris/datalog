@@ -8,10 +8,11 @@ import { cache } from './cache'
 import ReactDOM from 'react-dom'
 import App from './App'
 import './index.css'
+const uri = process.env.REACT_APP_API_URI
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
-  uri: 'http://localhost:4000/graphql',
+  uri,
 })
 
 ReactDOM.render(
