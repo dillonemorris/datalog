@@ -8,16 +8,24 @@ class API extends RESTDataSource {
 
   async getAllEntries() {
     const { entries } = await this.get("entries");
-    return Array.isArray(entries)
-      ? entries.map((entry) => this.entryReducer(entry))
-      : [];
+
+    if (Array.isArray(entries)) {
+      return entries
+        .map((entry) => this.entryReducer(entry))
+        .sort((a, b) => a.title.localeCompare(b.title));
+    } else {
+      return [];
+    }
   }
 
   async getCategories() {
     const categories = await this.get("categories");
-    return Array.isArray(categories)
-      ? categories.map((category) => this.categoryReducer(category))
-      : [];
+
+    if (Array.isArray(categories)) {
+      return categories.map((category) => this.categoryReducer(category));
+    } else {
+      return [];
+    }
   }
 
   async getEntriesByCategory(category) {
