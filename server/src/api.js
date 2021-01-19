@@ -10,9 +10,7 @@ class API extends RESTDataSource {
     const { entries } = await this.get("entries");
 
     if (Array.isArray(entries)) {
-      return entries
-        .map((entry) => this.entryReducer(entry))
-        .sort((a, b) => a.title.localeCompare(b.title));
+      return entries.map(this.entryReducer).sort(this.entrySorter);
     } else {
       return [];
     }
@@ -35,9 +33,8 @@ class API extends RESTDataSource {
 
     if (Array.isArray(entries)) {
       return entries
-        .map((entry) => {
-          return this.entryReducer(entry);
-        })
+        .map(this.entryReducer)
+        .sort(this.entrySorter)
         .filter((e) => {
           return (
             categoryTrimmed !== "Currency" || e.category === "Currency Exchange"
@@ -46,6 +43,10 @@ class API extends RESTDataSource {
     } else {
       return [];
     }
+  }
+
+  entrySorter(a, b) {
+    return a.title.localeCompare(b.title);
   }
 
   categoryReducer(category) {
